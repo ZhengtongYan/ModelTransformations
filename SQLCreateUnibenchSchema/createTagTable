@@ -1,0 +1,5 @@
+CREATE TABLE tag
+( id number(32) NOT NULL,
+	title varchar2(1250),
+	PRIMARY KEY (id)
+);

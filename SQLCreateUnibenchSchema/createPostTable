@@ -1,0 +1,10 @@
+CREATE TABLE post
+( id number(32) NOT NULL,
+	createDate varchar2(250),
+	location varchar2(250),
+	browserUsed varchar2(250),
+	language varchar2(250),
+	content varchar2(20000),
+	length number(32),
+	PRIMARY KEY (id)
+);
