@@ -1,0 +1,4 @@
+CREATE TABLE postHasCreator
+( postId number(32) NOT NULL, 
+personId number(32) NOT NULL	
+);

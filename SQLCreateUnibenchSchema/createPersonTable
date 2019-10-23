@@ -1,0 +1,12 @@
+CREATE TABLE person
+( id number(32) NOT NULL,
+firstName varchar2(250),
+lastName varchar2(250),
+gender varchar2(250),
+birthday DATE,
+creationDate varchar2(250),
+locationIP varchar2(250),
+browserUsed varchar2(250),
+place number(32),
+PRIMARY KEY (id)
+);
