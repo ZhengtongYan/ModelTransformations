@@ -1,0 +1,5 @@
+CREATE TABLE knows
+( personIdFrom number(32),
+personIdTo number(32),
+creationDate varchar2(250)
+);

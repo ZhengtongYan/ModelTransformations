@@ -1,5 +1,9 @@
-CREATE TABLE tag
-( id number(32) NOT NULL,
-	title varchar2(1250),
-	PRIMARY KEY (id)
+CREATE TABLE product
+( 	asin VARCHAR2(64),
+	title VARCHAR2(20000),
+	price FLOAT(25),
+	imgUrl VARCHAR2(250),
+	productId NUMBER(32) NOT NULL,
+	brand VARCHAR2(250),
+	PRIMARY KEY (productId)
 );
