@@ -1,0 +1,41 @@
+// Command for creating Person table. The data is not in a table but a collection of nodes.
+
+LOAD CSV WITH HEADERS FROM 'file:///person_0_0.csv' AS line FIELDTERMINATOR '|'
+CREATE (:Person { id: toInteger(line.id), firstName: line.firstName, lastName: line.lastName, gender: line.gender, birthday: line.birthday, creationDate: line.creationDate, locationIP: line.locationIP, browserUsed: line.browserUsed, place: toInteger(line.place)})
+
+// completed after 384 ms = 0.384 sec
+
+// Command for creating Person-knows->Person edges
+
+LOAD CSV WITH HEADERS FROM 'file:///person_knows_person_0_0.csv' AS line FIELDTERMINATOR '|'
+MATCH (a:Person),(b:Person)
+WHERE a.id = toInteger(line.source) AND b.id = toInteger(line.target)
+CREATE (a)-[r:knows {creationDate: line.creationDate}]->(b)
+
+// completed after 2856040 ms = 47.6 min. After this the size of the database is 94.66 MiB.
+
+// Command for importing Order.json. JSON files can be imported with APOC plugin. After all, nested elements are not allowed. Thus the following code does not work.
+
+call apoc.periodic.iterate('
+call apoc.load.json("file:///Order.json") yield value
+','
+create (n:Node) SET n += value
+',{batchSize:10000})
+
+// We can create OderTable
+
+LOAD CSV WITH HEADERS FROM 'file:///Order_Table.csv' AS line
+CREATE (:OrderTable { orderId: line.OrderId, personId: line.PersonId, orderDate: line.OrderDate, totalPrice: toFloat(line.TotalPrice), orderline: line.Orderline})
+
+// and then OderlineTable
+
+USING PERIODIC COMMIT 500
+LOAD CSV WITH HEADERS FROM 'file:///Orderline_Table.csv' AS line
+CREATE (:OrderlineTable { orderlineId: line.OrderlineId, productId: toInteger(line.productId), asin: line.asin, title: line.title, price: toFloat(line.price), brand: line.brand})
+
+// Then we create relationships (links, edges) from each order to its products in orderline
+
+MATCH (o:OrderTable)
+MATCH (p:OrderlineTable)
+WHERE o.orderline = p.orderlineId
+MERGE (o)-[:has]->(p)

@@ -13,9 +13,9 @@ There are more details in each folder separately.
     - [ ] Order.json
     - [x] Person - knows -> Person graph
 - [ ] Neo4j
-    - [ ] Person "table"
-    - [ ] Order.json
-    - [ ] Person - knows -> Person graph
+    - [x] Person "table"
+    - [x] Order.json
+    - [x] Person - knows -> Person graph
 - [ ] ArangoDB
     - [ ] Person "table"
     - [ ] Order.json
