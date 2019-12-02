@@ -13,6 +13,13 @@ MATCH (n:Person { firstName: "Hao", lastName: "Hu", id: 4398046519759}) RETURN n
 MATCH p = (:Person{id:4398046519759})-[:knows]->(n:Person)-[:knows]->(:Person{id: 17592186045441})
 RETURN p
 
+//Slow:
+
+MATCH (n:Person {firstName: 'Maithripala', lastName: 'Gunasekera'})-[:knows]-> (friend:Person)
+MATCH p = (o:OrderTable)-[:has]->(l:OrderlineTable)
+WHERE o.personId = friend.id
+RETURN p
+
 // Shortest path query that uses Graph algorithms package: https://neo4j.com/docs/graph-algorithms/current/labs-algorithms/. Although documentation says that direction for edges is 'OUTGOING' by default, it seems to be 'BOTH' by default
 // meaning that the algorithm treates graphs as undirected by default. The following code finds one of the shortest paths from start node to the end node so that edges are OUTGOING.
 
@@ -32,4 +39,12 @@ CALL algo.louvain.stream('Person', 'knows', {})
 YIELD nodeId, community
 RETURN algo.asNode(nodeId).id AS user, community
 ORDER BY community;
+
+// Random walk: https://neo4j.com/docs/graph-algorithms/current/labs-algorithms/random-walk/
+
+MATCH (start:Person { id:4398046519759 })
+CALL algo.randomWalk.stream(id(start), 4, 1)
+YIELD nodeIds
+UNWIND nodeIds AS nodeId
+RETURN algo.asNode(nodeId).firstName AS firstName, algo.asNode(nodeId).lastName AS lastname
 

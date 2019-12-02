@@ -25,7 +25,7 @@ create (n:Node) SET n += value
 // We can create OderTable (completed after 2649 ms)
 
 LOAD CSV WITH HEADERS FROM 'file:///Order_Table.csv' AS line
-CREATE (:OrderTable { orderId: line.OrderId, personId: line.PersonId, orderDate: line.OrderDate, totalPrice: toFloat(line.TotalPrice), orderline: line.Orderline})
+CREATE (:OrderTable { orderId: line.OrderId, personId: toInteger(line.PersonId), orderDate: line.OrderDate, totalPrice: toFloat(line.TotalPrice), orderline: line.Orderline})
 
 // and then OderlineTable (completed after 15856 ms)
 
