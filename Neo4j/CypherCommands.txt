@@ -22,20 +22,22 @@ call apoc.load.json("file:///Order.json") yield value
 create (n:Node) SET n += value
 ',{batchSize:10000})
 
-// We can create OderTable
+// We can create OderTable (completed after 2649 ms)
 
 LOAD CSV WITH HEADERS FROM 'file:///Order_Table.csv' AS line
 CREATE (:OrderTable { orderId: line.OrderId, personId: line.PersonId, orderDate: line.OrderDate, totalPrice: toFloat(line.TotalPrice), orderline: line.Orderline})
 
-// and then OderlineTable
+// and then OderlineTable (completed after 15856 ms)
 
 USING PERIODIC COMMIT 500
 LOAD CSV WITH HEADERS FROM 'file:///Orderline_Table.csv' AS line
 CREATE (:OrderlineTable { orderlineId: line.OrderlineId, productId: toInteger(line.productId), asin: line.asin, title: line.title, price: toFloat(line.price), brand: line.brand})
 
-// Then we create relationships (links, edges) from each order to its products in orderline
+// Then we create relationships (links, edges) from each order to its products in orderline (completed after 8869 ms)
 
 MATCH (o:OrderTable)
 MATCH (p:OrderlineTable)
 WHERE o.orderline = p.orderlineId
 MERGE (o)-[:has]->(p)
+
+// After this the total size of the database is 545.21 MiB.
