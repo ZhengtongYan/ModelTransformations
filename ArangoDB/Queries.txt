@@ -1,0 +1,7 @@
+FOR vertex
+  IN ANY SHORTEST_PATH
+  'persons/28587302323066' TO 'persons/2199023261411'
+  GRAPH 'personKnowsPerson'
+  RETURN [vertex._key]
+
+  

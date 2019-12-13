@@ -1,0 +1,8 @@
+// Open the terminal and navigate to the folder that contains executable file arangoimport
+// Then  and change the path to point to the file.
+
+arangoimport --file "path\\person_0_0.csv" --type csv --collection "persons" --create-collection true --create-collection-type document --separator "|" --translate "id=_key"
+
+arangoimp --file "path\\person_knows_person_0_0.csv" --type csv --separator "|" --collection "knows" --create-collection true --create-collection-type edge --from-collection-prefix persons --to-collection-prefix persons --translate "target=_to" --translate "source=_from"
+
+arangoimport --file "path\\Order.json" --type jsonl --collection "orders" --create-collection true --create-collection-type document 

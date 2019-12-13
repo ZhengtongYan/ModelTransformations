@@ -12,14 +12,14 @@ There are more details in each folder separately.
     - [x] Person table
     - [ ] Order.json
     - [x] Person - knows -> Person graph
-- [ ] Neo4j
+- [x] Neo4j
     - [x] Person "table"
     - [x] Order.json
     - [x] Person - knows -> Person graph
 - [ ] ArangoDB
-    - [ ] Person "table"
+    - [x] Person "table"
     - [ ] Order.json
-    - [ ] Person - knows -> Person graph
+    - [x] Person - knows -> Person graph
 - [ ] OrientDB
     - [ ] Person "table"
     - [ ] Order.json

@@ -1,4 +1,0 @@
-// Create a collection called persons via Arango web interface.
-// Then navigate to the folder that contains executable file arangoimport and change the path to point to the file.
-
-arangoimport --file "C:\\path_to_the_file\\person_0_0.csv" --type csv --collection "persons" --separator "|"
