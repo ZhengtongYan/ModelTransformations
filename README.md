@@ -16,9 +16,9 @@ There are more details in each folder separately.
     - [x] Person "table"
     - [x] Order.json
     - [x] Person - knows -> Person graph
-- [ ] ArangoDB
+- [x] ArangoDB
     - [x] Person "table"
-    - [ ] Order.json
+    - [x] Order.json
     - [x] Person - knows -> Person graph
 - [ ] OrientDB
     - [ ] Person "table"

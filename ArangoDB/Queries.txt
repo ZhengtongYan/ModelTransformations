@@ -4,4 +4,14 @@ FOR vertex
   GRAPH 'personKnowsPerson'
   RETURN [vertex._key]
 
-  
+
+FOR p IN persons
+    FILTER p.firstName == 'Eva' && p.lastName == 'Redl'
+    FOR o IN orders
+      FILTER o.PersonId == p._key
+      RETURN {
+        "first name" : p.firstName,
+        "last name": p.lastName,
+        "order" : o.OrderId
+      }
+
