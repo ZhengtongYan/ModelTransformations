@@ -24,3 +24,7 @@ There are more details in each folder separately.
     - [ ] Person "table"
     - [ ] Order.json
     - [ ] Person - knows -> Person graph
+- [ ] MongoDB
+    - [ ] Person "table"
+    - [ ] Order.json
+    - [ ] Person - knows -> Person graph

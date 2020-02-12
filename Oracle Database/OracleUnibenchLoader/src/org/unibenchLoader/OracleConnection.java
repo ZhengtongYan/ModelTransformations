@@ -9,7 +9,7 @@ public class OracleConnection {
          
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/orcl",user,pw);
+            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/oracledb", user, pw);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -39,6 +39,18 @@ public class OracleConnection {
         }
         return rs;  
     }
-
+    
+    public void CreateSchema (String sqlStr) {
+    	try {
+    		System.out.println("Executing: " + sqlStr);
+            Statement stmt = con.createStatement();
+            stmt.execute(sqlStr);
+            System.out.println("Schema creation succeeded.");
+            
+         } catch (SQLException e) {
+        	 System.out.println("Schema creation failed.");
+            e.printStackTrace();
+        }
+    }
 }
 

@@ -20,27 +20,27 @@ class OracleConnectionTest {
         oc.closeCon();
     }
 
-    @Test
-    void testGetResults() {
-        OracleConnection oc = new OracleConnection("unibench","oracle");
-        
-        String sqlStr="select * from person where id = 4145";
-        
-        ResultSet rss = oc.getResults(sqlStr);
-        
-        int emplID = 0;
-
-            try {
-                while(rss.next()) 
-                    
-                    emplID=rss.getInt(1);
-            } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            
-            assertEquals(4145,emplID);
-            oc.closeCon();
-    }
+//    @Test
+//    void testGetResults() {
+//        OracleConnection oc = new OracleConnection("unibench","oracle");
+//        
+//        String sqlStr="select * from person where id = 4145";
+//        
+//        ResultSet rss = oc.getResults(sqlStr);
+//        
+//        int emplID = 0;
+//
+//            try {
+//                while(rss.next()) 
+//                    
+//                    emplID=rss.getInt(1);
+//            } catch (SQLException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
+//            
+//            assertEquals(4145,emplID);
+//            oc.closeCon();
+//    }
 
 }

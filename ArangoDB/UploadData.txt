@@ -1,5 +1,5 @@
 // Open the terminal and navigate to the folder that contains executable file arangoimport
-// Then  and change the path to point to the file.
+// Change the path to point to the file.
 
 arangoimport --file "path\\person_0_0.csv" --type csv --collection "persons" --create-collection true --create-collection-type document --separator "|" --translate "id=_key"
 
